@@ -74,7 +74,7 @@ void	rout(t_data *data, long long curr, int wait, int i)
 				>= data->max_meals)
 				continue ;
 			curr = get_time();
-			if (curr - data->philos[i].last_meal > data->philos[i].ttd)
+			if (curr - data->philos[i].last_meal >= data->philos[i].ttd)
 			{
 				pthread_mutex_lock(&data->print);
 				kill_all(data);
