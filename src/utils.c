@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:22 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/03 15:51:33 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/06 16:36:26 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ void	kill_all(t_data *data)
 
 	i = -1;
 	while (++i < data->nb_philos)
+	{
+		pthread_mutex_lock(&data->philos[i].alive_lock);
 		data->philos[i].alive = 0;
+		pthread_mutex_unlock(&data->philos[i].alive_lock);
+	}
 }
 
 void	check_meals(t_data *data)

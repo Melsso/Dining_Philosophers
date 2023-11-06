@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:34 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/03 16:05:52 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/06 16:21:18 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,21 @@ typedef struct s_philo	t_philo;
 typedef struct s_philo
 {
 	long long	last_meal;
+	long long	*start_time;
 	long long	tte;
 	long long	tts;
 	long long	ttd;
+	int			*max_meals;
+	int			*nb_philos;
 	int			ind;
 	int			nb_meals;
 	int			alive;
-	int			rfork;
-	int			lfork;
-	t_data		*data;
+	pthread_mutex_t	*lfork;
+	pthread_mutex_t	*rfork;
+	pthread_mutex_t	*print;
+	pthread_mutex_t	alive_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	mtime_lock;
 }	t_philo;
 
 typedef struct s_data
@@ -50,15 +56,13 @@ typedef struct s_data
 int			parse_input(t_data *data, int argc, char **argv);
 int			launch(t_data *data);
 void		*routine(void *arg);
-void		eat(t_philo *philo, t_data *data);
-void		print(char *str, t_philo *philo, t_data *data, int flag);
+void		eat(t_philo *philo);
+void		print(char *str, t_philo *philo, int flag);
 void		ft_usleep(long long time);
 long long	get_time(void);
 void		kill_all(t_data *data);
 void		check_meals(t_data *data);
 int			ft_atoi(char *str);
-void		get_forks(t_philo *philo, t_data *data, int rfork, int lfork);
-void		get_forks1(t_philo *philo, t_data *data, int rfork, int lfork);
 void		rout(t_data *data, long long curr, int wait, int i);
 
 #endif

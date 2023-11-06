@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:07:38 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/03 14:55:35 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/06 16:22:02 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	check_args(char **argv)
 	return (1);
 }
 
-static void	init_philo(t_philo *philo, long long *arr, int ind)
+static void	init_philo(t_philo *philo, long long *arr, int ind, t_data *data)
 {
 	philo->alive = 1;
 	philo->ind = ind;
@@ -43,8 +43,14 @@ static void	init_philo(t_philo *philo, long long *arr, int ind)
 	philo->tts = arr[2];
 	philo->last_meal = 0;
 	philo->nb_meals = 0;
-	philo->rfork = ind - 1;
-	philo->lfork = ind;
+	philo->lfork = &data->forks[ind - 1];
+	philo->print = &data->print;
+	philo->start_time = &data->start_time;
+	philo->max_meals = &data->max_meals;
+	philo->nb_philos = &data->nb_philos;
+	pthread_mutex_init(&philo->alive_lock, NULL);
+	pthread_mutex_init(&philo->meal_lock, NULL);
+	pthread_mutex_init(&philo->mtime_lock, NULL);
 }
 
 int	parse_input(t_data *data, int argc, char **argv)
@@ -69,9 +75,11 @@ int	parse_input(t_data *data, int argc, char **argv)
 	while (++i < data->nb_philos)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
-		init_philo(&data->philos[i], arr, i + 1);
-		data->philos[i].data = data;
+		init_philo(&data->philos[i], arr, i + 1, data);
 	}
-	data->philos[i - 1].lfork = 0;
+	i = -1;
+	while (++i < data->nb_philos - 1)
+		data->philos[i].rfork = &data->forks[i + 1];
+	data->philos[i].rfork = &data->forks[0];
 	return (1);
 }
