@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:34 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/06 16:21:18 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/06 17:12:25 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ typedef struct s_data	t_data;
 typedef struct s_philo	t_philo;
 typedef struct s_philo
 {
-	long long	last_meal;
-	long long	*start_time;
-	long long	tte;
-	long long	tts;
-	long long	ttd;
-	int			*max_meals;
-	int			*nb_philos;
-	int			ind;
-	int			nb_meals;
-	int			alive;
+	long long		last_meal;
+	long long		*start_time;
+	long long		tte;
+	long long		tts;
+	long long		ttd;
+	int				*max_meal;
+	int				*nb_philos;
+	int				ind;
+	int				nb_meals;
+	int				alive;
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
 	pthread_mutex_t	*print;
@@ -49,7 +49,7 @@ typedef struct s_data
 	long long		start_time;
 	int				alive;
 	int				nb_philos;
-	int				max_meals;
+	int				max_meal;
 	pthread_mutex_t	print;
 }	t_data;
 

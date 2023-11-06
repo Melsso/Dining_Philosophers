@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:22 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/06 16:36:26 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/06 16:55:59 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	check_meals(t_data *data)
 	i = -1;
 	while (++i < data->nb_philos)
 	{
-		if (data->philos[i].nb_meals == data->max_meals)
+		if (data->philos[i].nb_meals == data->max_meal)
 			data->philos[i].alive = 0;
 	}
 }

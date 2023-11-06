@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:17 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/06 16:54:18 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/06 16:55:59 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	rout(t_data *d, long long curr, int wait, int i)
 		while (++i < d->nb_philos)
 		{
 			pthread_mutex_lock(&d->philos[i].meal_lock);
-			k[1] = (d->max_meals != -1 && d->philos[i].nb_meals >= d->max_meals);
+			k[1] = (d->max_meal != -1 && d->philos[i].nb_meals >= d->max_meal);
 			pthread_mutex_unlock(&d->philos[i].meal_lock);
 			if (k[1] && k[0]++)
 				continue ;

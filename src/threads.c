@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:20 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/06 16:50:05 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/06 16:55:59 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*routine(void *arg)
 	int		f;
 
 	philo = (t_philo *)arg;
-	flag = (*philo->max_meals != -1);
+	flag = (*philo->max_meal != -1);
 	if (*philo->nb_philos != 1)
 	{
 		if (philo->ind % 2)
@@ -47,7 +47,7 @@ void	*routine(void *arg)
 		f = 1;
 		while (f)
 		{
-			if (flag && philo->nb_meals >= *philo->max_meals)
+			if (flag && philo->nb_meals >= *philo->max_meal)
 				break ;
 			eat(philo);
 			pthread_mutex_lock(&philo->alive_lock);
