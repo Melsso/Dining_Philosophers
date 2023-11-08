@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:20 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/06 16:55:59 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/08 16:22:24 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void	eat(t_philo *philo)
 	print("is sleeping", philo, 0);
 	ft_usleep(philo->tts);
 	print("is thinking", philo, 0);
+}
+
+static void	dead(t_philo *philo)
+{
+	print("picked up a fork", philo, 0);
+	ft_usleep(philo->ttd);
+	print("died", philo, 0);
 }
 
 void	*routine(void *arg)
@@ -56,7 +63,7 @@ void	*routine(void *arg)
 		}
 	}
 	else
-		print("picked up a fork", philo, 0);
+		dead(philo);
 	pthread_exit(NULL);
 }
 

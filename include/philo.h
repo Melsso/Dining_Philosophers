@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:34 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/06 17:12:25 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/08 16:16:11 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void		kill_all(t_data *data);
 void		check_meals(t_data *data);
 int			ft_atoi(char *str);
 void		rout(t_data *data, long long curr, int wait, int i);
+void		ft_destroy(t_data *data, int ind);
 
 #endif
