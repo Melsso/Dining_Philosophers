@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:20 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/08 16:22:24 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/08 17:53:32 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,18 @@ int	launch(t_data *data)
 {
 	int			i;
 	long long	curr;
-	int			wait;
+	int			k[4];
 
 	i = -1;
 	data->start_time = get_time();
 	while (++i < data->nb_philos)
 		if (pthread_create(&data->tid[i], NULL, routine, &data->philos[i]) != 0)
 			return (printf("Failed to create threads!\n"), 0);
-	wait = (data->philos[0].ttd / 2);
+	k[3] = (data->philos[0].ttd / 2);
 	curr = 0;
 	i = 0;
 	ft_usleep(data->philos[0].ttd);
-	rout(data, curr, wait, i);
+	rout(data, curr, k, i);
 	i = -1;
 	while (++i < data->nb_philos)
 		if (pthread_join(data->tid[i], NULL) != 0)

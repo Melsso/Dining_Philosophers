@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 17:33:17 by smallem           #+#    #+#             */
-/*   Updated: 2023/11/06 16:55:59 by smallem          ###   ########.fr       */
+/*   Updated: 2023/11/08 17:54:05 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ static void	ft_print(long long curr, t_data *data, int i)
 	pthread_mutex_unlock(&data->print);
 }
 
-void	rout(t_data *d, long long curr, int wait, int i)
+void	rout(t_data *d, long long curr, int *k, int i)
 {
-	int	k[3];
-
-	while (!usleep(wait))
+	while (!usleep(k[3]))
 	{
 		k[0] = 0;
+		i = -1;
 		while (++i < d->nb_philos)
 		{
 			pthread_mutex_lock(&d->philos[i].meal_lock);
